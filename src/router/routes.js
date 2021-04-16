@@ -1,10 +1,11 @@
 import Home from '@/pages/Home'
 import About from '@/pages/About'
+import microBasePath from '@/micro-config'
 
 const routes = [
   {
-    path: '/',
-    redirect: '/home'
+    path: microBasePath + '/',
+    redirect: microBasePath + '/home'
   },
   {
     /**
@@ -12,7 +13,7 @@ const routes = [
      * name: 路由的 name 为 Home
      * component: 触发路由时加载 `Home` 组件
      */
-    path: "/home",
+    path: microBasePath + "/home",
     name: "Home",
     component: Home,
   },
@@ -22,7 +23,7 @@ const routes = [
      * name: 路由的 name 为 Home
      * component: 触发路由时加载 `Home` 组件
      */
-    path: "/about",
+    path: microBasePath + "/about",
     name: "About",
     component: About,
   },

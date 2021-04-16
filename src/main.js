@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import microBasePath from './micro-config'
 
 Vue.config.productionTip = false
 
@@ -11,6 +12,13 @@ let instance = null;
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
  function render() {
+   router.beforeEach((to, from, next) => {
+    if(microBasePath && !to.path.includes(microBasePath)) {
+      next(microBasePath + to.path)
+    }else {
+      next()
+    }
+   })
 
   // 挂载应用
   instance = new Vue({
@@ -47,5 +55,4 @@ export async function unmount() {
   console.log("VueMicroApp unmount");
   instance.$destroy();
   instance = null;
-  router = null;
 }
